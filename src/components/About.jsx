@@ -28,7 +28,7 @@ export const About = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-square">
               <img
-                src="/profile.png"
+                src="/profile.jpg"
                 alt="Programming"
                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />

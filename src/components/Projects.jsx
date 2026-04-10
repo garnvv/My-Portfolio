@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Github, ExternalLink } from 'lucide-react';
 
 const projectsData = [
   {
@@ -11,6 +11,8 @@ const projectsData = [
     ],
     image: '/aegisguard.png',
     tags: ['AI/ML', 'Cybersecurity', 'Web'],
+    liveLink: 'https://aegisguard.vercel.app/',
+    githubLink: 'https://github.com/garnvv/aegisguard'
   },
   {
     title: 'EcoSweep',
@@ -21,6 +23,7 @@ const projectsData = [
     ],
     image: '/ecosweep_app.png',
     tags: ['Android', 'Java', 'Firebase'],
+    githubLink: 'https://github.com/garnvv/ECOSWEEP'
   },
   {
     title: 'Disaster Management System',
@@ -31,6 +34,7 @@ const projectsData = [
     ],
     image: '/disaster_management_system.png',
     tags: ['Python', 'Tkinter', 'SQL'],
+    githubLink: 'https://github.com/garnvv/Disaster-Management-System'
   },
   {
     title: 'Hotel Management System',
@@ -41,6 +45,7 @@ const projectsData = [
     ],
     image: '/hotel_management.png',
     tags: ['C++', 'Data Structures', 'Algorithms'],
+    githubLink: 'https://github.com/garnvv/Hotel-Management-System'
   },
   {
     title: 'Water FootPrint',
@@ -51,6 +56,7 @@ const projectsData = [
     ],
     image: '/water_footprint_app.png',
     tags: ['Java', 'Android SDK', 'XML'],
+    githubLink: 'https://github.com/garnvv' 
   },
   {
     title: 'Smart Waste Management',
@@ -61,6 +67,7 @@ const projectsData = [
     ],
     image: '/water_footprint_app.png',
     tags: ['GPS', 'IoT', 'Data Analytics'],
+    githubLink: 'https://github.com/garnvv/Smart-Waste-Management-System'
   },
   {
     title: 'Bafna E-Bykes',
@@ -71,6 +78,8 @@ const projectsData = [
     ],
     image: '/bafna_ebykes.png',
     tags: ['Web Development', 'E-Commerce', 'UI/UX'],
+    liveLink: 'https://bafna-frontend.onrender.com/',
+    githubLink: 'https://github.com/garnvv/bafna-ebykes'
   },
   {
     title: 'Brick Breaker Game',
@@ -81,6 +90,7 @@ const projectsData = [
     ],
     image: '/brick_breaker.png',
     tags: ['Game Development', 'Java'],
+    githubLink: 'https://github.com/garnvv/Brick-Breaker-Game'
   },
   {
     title: 'Tic-Tac-Toe',
@@ -91,6 +101,7 @@ const projectsData = [
     ],
     image: '/tic_tac_toe.png',
     tags: ['Logic', 'Algorithms'],
+    githubLink: 'https://github.com/garnvv/Tic-Tac-Teo'
   }
 ];
 
@@ -123,19 +134,23 @@ export const Projects = () => {
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}
             >
-              {/* Image Side */}
-              <div className="w-full lg:w-1/2">
-                <div className="relative group rounded-3xl overflow-hidden glass p-4 border border-glass-border shadow-2xl hover:border-primary-500/50 transition-all duration-500">
+              {/* Image Side with 3D Effect */}
+              <div className="w-full lg:w-1/2 perspective-1000">
+                <motion.div 
+                  whileHover={{ rotateX: 5, rotateY: index % 2 === 1 ? -5 : 5, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative group rounded-3xl overflow-hidden glass p-4 border border-glass-border shadow-2xl hover:border-primary-500/50 transition-all duration-500 transform-style-3d cursor-pointer"
+                >
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-800">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     {/* Subtle Overlay */}
-                    <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/10 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/20 transition-colors duration-500"></div>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Text Side */}
@@ -169,6 +184,31 @@ export const Projects = () => {
                       {tag}
                     </span>
                   ))}
+                </div>
+
+                <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  {project.githubLink && (
+                    <a 
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-background border border-slate-300 dark:border-slate-700 hover:border-primary-500 hover:text-primary-500 text-foreground rounded-lg font-medium transition-all group"
+                    >
+                      <Github size={18} />
+                      <span>Code</span>
+                    </a>
+                  )}
+                  {project.liveLink && (
+                    <a 
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium shadow-lg shadow-primary-500/30 transition-all group"
+                    >
+                      <span>Live Demo</span>
+                      <ExternalLink size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

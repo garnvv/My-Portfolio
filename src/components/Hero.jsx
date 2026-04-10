@@ -89,7 +89,7 @@ export const Hero = () => {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <img 
-                  src="/profile.png" 
+                  src="/profile.jpg" 
                   alt="Gaurav Patil" 
                   className="w-full h-full object-cover"
                 />
