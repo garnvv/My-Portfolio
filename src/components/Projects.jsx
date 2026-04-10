@@ -3,6 +3,16 @@ import { CheckCircle2 } from 'lucide-react';
 
 const projectsData = [
   {
+    title: 'AegisGuard.AI',
+    subtitle: 'Threat Intelligence Platform',
+    description: [
+      'Architected AegisGuard.AI, a Next-Gen Phishing & Threat Intelligence Platform.',
+      'Empowers cyber defense by providing real-time threat intelligence and automated phishing detection via AI models.'
+    ],
+    image: '/aegisguard.png',
+    tags: ['AI/ML', 'Cybersecurity', 'Web'],
+  },
+  {
     title: 'EcoSweep',
     subtitle: 'Android Application',
     description: [
@@ -11,6 +21,26 @@ const projectsData = [
     ],
     image: '/ecosweep_app.png',
     tags: ['Android', 'Java', 'Firebase'],
+  },
+  {
+    title: 'Disaster Management System',
+    subtitle: 'Desktop Application',
+    description: [
+      'Developed a desktop-based Disaster Management System using Python, Tkinter GUI, and SQL Server integration.',
+      'Designed a centralized database system integrating all critical aspects of disaster management for rapid response.'
+    ],
+    image: '/disaster_management_system.png',
+    tags: ['Python', 'Tkinter', 'SQL'],
+  },
+  {
+    title: 'Hotel Management System',
+    subtitle: 'Desktop Application',
+    description: [
+      'Engineered a comprehensive hotel management system handling dynamic room bookings and cancellations.',
+      'Implemented foundational data structures like linked lists to maximize efficiency when tracking records.'
+    ],
+    image: '/hotel_management.png',
+    tags: ['C++', 'Data Structures', 'Algorithms'],
   },
   {
     title: 'Water FootPrint',
@@ -23,14 +53,44 @@ const projectsData = [
     tags: ['Java', 'Android SDK', 'XML'],
   },
   {
-    title: 'Disaster Management System',
-    subtitle: 'Desktop Application',
+    title: 'Smart Waste Management',
+    subtitle: 'Web System',
     description: [
-      'Developed a desktop-based Disaster Management System using Python, Tkinter GUI, and SQL Server integration.',
-      'Designed features to add, delete, and view disaster data with predefined/custom SQL queries and Treeview-based data display.'
+      'System assigns dynamically reported garbage collection requests with user GPS location to municipal workers.',
+      'Features automated reminders and pattern data analytics with readiness for real-time IoT continuous monitoring.'
     ],
-    image: '/disaster_management_system.png',
-    tags: ['Python', 'Tkinter', 'SQL Server'],
+    image: '/water_footprint_app.png',
+    tags: ['GPS', 'IoT', 'Data Analytics'],
+  },
+  {
+    title: 'Bafna E-Bykes',
+    subtitle: 'E-Commerce Platform',
+    description: [
+      'A sleek, responsive digital storefront developed to showcase, manage, and scale electric bicycle operations.',
+      'Focuses heavily on an intuitive end-to-end shopping user experience and robust product inventory systems.'
+    ],
+    image: '/bafna_ebykes.png',
+    tags: ['Web Development', 'E-Commerce', 'UI/UX'],
+  },
+  {
+    title: 'Brick Breaker Game',
+    subtitle: 'Arcade Game',
+    description: [
+      'Developed a modern take on the classic arcade-style Brick Breaker game featuring dynamic physics and object collisions.',
+      'Engineered robust game loops, level progression layers, and immersive graphic rendering environments.'
+    ],
+    image: '/brick_breaker.png',
+    tags: ['Game Development', 'Java'],
+  },
+  {
+    title: 'Tic-Tac-Toe',
+    subtitle: 'Logic Game',
+    description: [
+      'Programmed a complete digital replication of the classic Tic-tac-toe game in a 3x3 grid layout.',
+      'Implemented rigorous state-checking algorithms to dynamically determine win, lose, and draw scenarios in real-time.'
+    ],
+    image: '/tic_tac_toe.png',
+    tags: ['Logic', 'Algorithms'],
   }
 ];
 
