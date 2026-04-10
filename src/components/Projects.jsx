@@ -122,95 +122,86 @@ export const Projects = () => {
           <div className="w-24 h-1.5 bg-primary-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="space-y-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+              className="h-full"
             >
-              {/* Image Side with 3D Effect */}
-              <div className="w-full lg:w-1/2 perspective-1000">
-                <motion.div 
-                  whileHover={{ rotateX: 5, rotateY: index % 2 === 1 ? -5 : 5, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative group rounded-3xl overflow-hidden glass p-4 border border-glass-border shadow-2xl hover:border-primary-500/50 transition-all duration-500 transform-style-3d cursor-pointer"
-                >
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-800">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    {/* Subtle Overlay */}
-                    <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/20 transition-colors duration-500"></div>
+              <motion.div 
+                whileHover={{ rotateX: 8, rotateY: -8, y: -12, scale: 1.02, z: 30 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative flex flex-col h-full group rounded-3xl overflow-hidden glass p-8 border border-glass-border shadow-lg hover:shadow-2xl hover:shadow-primary-500/30 hover:border-primary-500/50 transition-all duration-500 cursor-pointer"
+              >
+                {/* Background Glow Effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-primary-500/0 via-primary-500/0 to-primary-500/0 group-hover:from-primary-500/10 group-hover:to-transparent opacity-0 group-hover:opacity-100 transition duration-500 blur-2xl"></div>
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="mb-6 transform-style-3d group-hover:translate-z-10 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold text-foreground mb-2 leading-tight">
+                      {project.title}
+                    </h3>
+                    <p className="text-primary-500 font-semibold text-sm uppercase tracking-wider">
+                      {project.subtitle}
+                    </p>
                   </div>
-                </motion.div>
-              </div>
 
-              {/* Text Side */}
-              <div className="w-full lg:w-1/2 space-y-6">
-                <div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-primary-500 font-semibold text-lg uppercase tracking-wide">
-                    {project.subtitle}
-                  </p>
-                </div>
+                  <div className="flex-grow mb-8 transform-style-3d group-hover:translate-z-8 transition-transform duration-500">
+                    <ul className="space-y-4">
+                      {project.description.map((item, i) => (
+                        <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
+                          <CheckCircle2 size={18} className="text-primary-500 mt-1 flex-shrink-0" />
+                          <span className="text-sm leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="mt-auto transform-style-3d group-hover:translate-z-12 transition-transform duration-500">
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, i) => (
+                        <span 
+                          key={i} 
+                          className="px-3 py-1 bg-slate-200/50 dark:bg-slate-800/50 text-foreground text-xs font-semibold rounded-md border border-slate-300 dark:border-slate-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                <div className="glass p-6 md:p-8 rounded-2xl border border-glass-border shadow-sm">
-                  <ul className="space-y-4">
-                    {project.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
-                        <CheckCircle2 size={20} className="text-primary-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-base leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-200/50 dark:border-slate-800/50 w-full">
+                      {project.githubLink && (
+                        <a 
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-background border border-slate-300 dark:border-slate-700 hover:border-primary-500 hover:text-primary-500 text-foreground rounded-xl text-sm font-semibold transition-all group/btn"
+                        >
+                          <Github size={16} />
+                          <span>Code</span>
+                        </a>
+                      )}
+                      {project.liveLink && (
+                        <a 
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-xl text-sm font-semibold shadow-lg shadow-primary-500/25 transition-all group/btn"
+                        >
+                          <span>Live Demo</span>
+                          <ExternalLink size={16} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {project.tags.map((tag, i) => (
-                    <span 
-                      key={i} 
-                      className="px-4 py-2 bg-slate-200/50 dark:bg-slate-800/50 text-foreground text-sm font-semibold rounded-lg border border-slate-300 dark:border-slate-700"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
-                  {project.githubLink && (
-                    <a 
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 bg-background border border-slate-300 dark:border-slate-700 hover:border-primary-500 hover:text-primary-500 text-foreground rounded-lg font-medium transition-all group"
-                    >
-                      <Github size={18} />
-                      <span>Code</span>
-                    </a>
-                  )}
-                  {project.liveLink && (
-                    <a 
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium shadow-lg shadow-primary-500/30 transition-all group"
-                    >
-                      <span>Live Demo</span>
-                      <ExternalLink size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </a>
-                  )}
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
