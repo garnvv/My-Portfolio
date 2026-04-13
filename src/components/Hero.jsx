@@ -54,7 +54,7 @@ export const Hero = () => {
                 View Projects
               </a>
               <a 
-                href="/GAURAV_PATIL_Resume.pdf" 
+                href="/GAURAV_PATIL.pdf" 
                 download
                 className="px-8 py-3 rounded-full glass font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-2"
               >
